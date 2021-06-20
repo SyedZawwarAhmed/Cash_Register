@@ -79,7 +79,25 @@ def getChange(price, cash, cid, status):
             i += 1
     return changeArray
 
+cccid = [["FIVE THOUSAND"],
+["ONE THOUSAND"],
+["FIVE HUNDRED"],
+["ONE HUNDRED"],
+["FIFTY"],
+["TWENTY"],
+["TEN"],
+["FIVE"],
+["TWO"],
+["ONE"]]
 
-print(checkCashRegister())
+print("Enter Cash in Drawer")
+for item in cccid:
+    x = int(input("Cash in " + item[0] + " Rupee/s:- "))
+    item.append(x)
+
+price = int(input("Enter Amount Due:- "))
+cash = int(input("Enter Cash Given:- "))
+    
+print(checkCashRegister(price, cash, cccid))
 
 # 1000, 2000, [["ONE", 24], ["TWO", 52], ["FIVE", 625], ["TEN", 540], ["TWENTY", 2640], ["FIFTY", 23450], ["ONE HUNDRED", 456300], ["FIVE HUNDRED", 32432500], ["ONE THOUSAND", 354234000], ["FIVE THOUSAND", 23565000]]
