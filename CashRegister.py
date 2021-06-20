@@ -1,4 +1,4 @@
-def checkCashRegister(price, cash, cid):
+def checkCashRegister(price, cash, cid=[["ONE", 1000], ["TWO", 2000], ["FIVE", 5000], ["TEN", 10000], ["TWENTY", 20000], ["FIFTY", 500000], ["ONE HUNDRED", 1000000], ["FIVE HUNDRED", 500000], ["ONE THOUSAND", 1000000], ["FIVE THOUSAND", 5000000]]):
     status = getStatus(price, cash, cid)
     change = getChange(price, cash, cid, status)
     return {
@@ -90,14 +90,14 @@ cid = [
 ["TWO"],
 ["ONE"]
 ]
-print("Enter Cash in Drawer")
-for item in cid:
-    x = int(input("Cash in " + item[0] + " Rupee/s:- "))
-    item.append(x)
 
 price = int(input("Enter Amount Due:- "))
 cash = int(input("Enter Cash Given:- "))
-    
-print(checkCashRegister(price, cash, cid))
-
-# 1000, 2000, [["ONE", 24], ["TWO", 52], ["FIVE", 625], ["TEN", 540], ["TWENTY", 2640], ["FIFTY", 23450], ["ONE HUNDRED", 456300], ["FIVE HUNDRED", 32432500], ["ONE THOUSAND", 354234000], ["FIVE THOUSAND", 23565000]]
+choice = input("Do you want to update Cash in Drawer?\n If Yes, press (Y/y) else press any key:- ")
+if choice == 'Y' or choice == 'y':
+    for item in cid:
+        x = int(input("Cash in " + item[0] + " Rupee/s:- "))
+        item.append(x)
+    print(checkCashRegister(price, cash, cid))
+else:
+    print(checkCashRegister(price, cash))
