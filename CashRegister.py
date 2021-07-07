@@ -1,3 +1,5 @@
+from tkinter import *
+
 def checkCashRegister(price, cash, cid=[["ONE", 1000], ["TWO", 2000], ["FIVE", 5000], ["TEN", 10000], ["TWENTY", 20000], ["FIFTY", 500000], ["ONE HUNDRED", 1000000], ["FIVE HUNDRED", 500000], ["ONE THOUSAND", 1000000], ["FIVE THOUSAND", 5000000]]):
     status = getStatus(price, cash, cid)
     change = getChange(price, cash, cid, status)
@@ -16,7 +18,7 @@ def getStatus(price, cash, cid):
         cashInDrawer += item[1]
     ac = [5000, 1000, 500, 100, 50, 20, 10, 5, 2, 1]
     status = ""
-    totalChange = cash - price
+    totalChange = float(cash) - float(price)
     if totalChange > cashInDrawer:
         status = "INSUFFICIENT_FUNDS"
     elif totalChange == cashInDrawer:
@@ -40,7 +42,7 @@ def getStatus(price, cash, cid):
 
 
 def getChange(price, cash, cid, status):
-    totalChange = cash - price
+    totalChange = float(cash) - float(price)
     changeArray = []
     currentCurrencyName = ""
     currentCurrency = 0
@@ -91,13 +93,74 @@ cid = [
 ["ONE"]
 ]
 
-price = int(input("Enter Amount Due:- "))
-cash = int(input("Enter Cash Given:- "))
-choice = input("Do you want to update Cash in Drawer?\n If Yes, press (Y/y) else press any key:- ")
-if choice == 'Y' or choice == 'y':
-    for item in cid:
-        x = int(input("Cash in " + item[0] + " Rupee/s:- "))
-        item.append(x)
-    print(checkCashRegister(price, cash, cid))
-else:
-    print(checkCashRegister(price, cash))
+root = Tk()
+root.geometry("800x600")
+img = PhotoImage(file="D:\Annas Docs\Coding\Python\Template.png")      
+
+
+# Adding Image in BackGround
+my_label1 = Label(root, image = img)
+my_label1.place(x = 0, y = 0)
+
+
+# Adding on Heading
+my_text = Label(root, text = "Cash Register", fg = "red", font = ("Helvetica", 30))
+my_text.pack()
+
+e = Entry(root, width = 50)
+e.pack()
+e.place(x = 250, y = 70)
+e.insert(0,"")
+
+def Clickme():
+    global price
+    price = e.get()
+
+mybutton = Button(root, text="Enter Amount Due", bg="purple", fg="white", command=Clickme)
+mybutton.pack()
+mybutton.place(x = 500, y = 70)
+
+e1 = Entry(root, width = 50)
+e1.pack()
+e1.place(x = 250, y = 100)
+e1.insert(0,"")
+
+def Clickme1():
+    global cash1
+    cash1 = e1.get()
+
+mybutton1 = Button(root, text="Enter Cash Given", bg="purple", fg="white", command = Clickme1)
+mybutton1.pack()
+mybutton1.place(x = 500, y = 100)
+
+confirmation_Label = Label(root, text = "Do you want to update Cash in Drawer?\n If Yes, press (Y/y) else press any key", padx = 50, bg = "white")
+confirmation_Label.pack()
+confirmation_Label.place(x = 250, y = 450)
+
+
+e2 = Entry(root, width = 50)
+e2.pack()
+e2.place(x = 250, y = 500)
+e2.insert(0,"")
+
+def Clickme2():
+    if e2.get() == 'Y' or e2.get() == 'y':
+        for item in cid:
+            x = int(input("Cash in " + item[0] + " Rupee/s:- "))
+            item.append(x)
+        result = checkCashRegister(price, cash1, cid)
+        mylabel = Label(root, text = result)
+        mylabel.pack()
+        mylabel.place(x = 260, y = 550)
+    else:
+        result = checkCashRegister(price, cash1)
+        mylabel1 = Label(root, text = result)
+        mylabel1.pack()
+        mylabel1.place(x = 260, y = 550)
+
+
+mybutton2 = Button(root, text="Confirm", bg="purple", fg="white", command=Clickme2)
+mybutton2.pack()
+mybutton2.place(x = 500, y = 500)
+
+root.mainloop()
