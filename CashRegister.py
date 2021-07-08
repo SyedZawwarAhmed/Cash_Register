@@ -95,7 +95,7 @@ cid = [
 
 root = Tk()
 root.geometry("800x600")
-img = PhotoImage(file="D:\Annas Docs\Coding\Python\Template.png")      
+img = PhotoImage(file="Template.png")      
 
 
 # Adding Image in BackGround
