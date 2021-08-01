@@ -1,4 +1,43 @@
-def checkCashRegister(price, cash, cid=[["ONE", 1000], ["TWO", 2000], ["FIVE", 5000], ["TEN", 10000], ["TWENTY", 20000], ["FIFTY", 500000], ["ONE HUNDRED", 1000000], ["FIVE HUNDRED", 500000], ["ONE THOUSAND", 1000000], ["FIVE THOUSAND", 5000000]]):
+cid = [
+["FIVE THOUSAND"],
+["ONE THOUSAND"],
+["FIVE HUNDRED"],
+["ONE HUNDRED"],
+["FIFTY"],
+["TWENTY"],
+["TEN"],
+["FIVE"],
+["TWO"],
+["ONE"]
+]
+
+labels = [
+"Cash in Five Thousand Rupees",
+"Cash in One Thousand Rupees",
+"Cash in Five Hundred Rupees",
+"Cash in One Hundred Rupees",
+"Cash in Fifty Rupees",
+"Cash in Twenty Rupees",
+"Cash in Ten Rupees",
+"Cash in Five Rupees",
+"Cash in Two Rupees",
+"Cash in One Rupees"
+]
+
+remaining_cash = [
+["FIVE THOUSAND", 5000000],
+["ONE THOUSAND", 1000000], 
+["FIVE HUNDRED", 500000], 
+["ONE HUNDRED", 1000000], 
+["FIFTY", 500000], 
+["TWENTY", 20000], 
+["TEN", 10000], 
+["FIVE", 5000],
+["TWO", 2000],
+["ONE", 1000]
+]
+
+def checkCashRegister(price, cash, cid=remaining_cash):
     status = getStatus(price, cash, cid)
     change = getChange(price, cash, cid, status)
     return {
@@ -18,7 +57,7 @@ def getStatus(price, cash, cid):
     status = ""
     totalChange = float(cash) - float(price)
     if totalChange > cashInDrawer:
-        status = "INSUFFICIENT_FUNDS"
+        status = "INSUFFICIENT FUNDS"
     elif totalChange == cashInDrawer:
         status = "CLOSED"
     else:
@@ -34,7 +73,7 @@ def getStatus(price, cash, cid):
                 i += 1
       
         if totalChange != 0:
-            status = "INSUFFICIENT_FUNDS"
+            status = "INSUFFICIENT FUNDS"
 
     return status
 
@@ -71,7 +110,7 @@ def getChange(price, cash, cid, status):
             if j != 0:
                 currentCurrencyName = ac[i][0]
                 currentCurrency = ac[i][1] * j
-                if status != "INSUFFICIENT_FUNDS":
+                if status != "INSUFFICIENT FUNDS":
                     change = [currentCurrencyName, currentCurrency]
                     changeArray.append(change)
             j = 0
