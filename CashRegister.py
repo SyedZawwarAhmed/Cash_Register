@@ -5,33 +5,30 @@ from functions import remaining_cash
 from functions import cid
 from functions import labels
 
+button_bg = "#023e8a"
+text_light = "#caf0f8"
+text_dark = "#03045e"
+bg = "#CAF0F8"
+
 root = Tk()
 root.geometry("1280x720")
 root.title("Cash Register")
-
+root.configure(background=bg)
 
 # Due Amount: 
 
-<<<<<<< HEAD
 Amount_due_entry = Entry(root, width = 20, borderwidth=0)
 Amount_due_entry.config(font =("Arial", 22))
 Amount_due_entry.pack()
 Amount_due_entry.place(x = 150, y = 80)
-=======
-Amount_due_entry = Entry(root, width = 25)
-Amount_due_entry.config(font =("Arial", 22))
-Amount_due_entry.pack()
-Amount_due_entry.place(x = 25, y = 80)
->>>>>>> b18521c6f543decface60a2e1c6daf2828929d6f
 Amount_due_entry.insert(0, "")
 
 def Amount_due():
     global price
     price = Amount_due_entry.get()
 
-<<<<<<< HEAD
-Amount_due_Button = Button(root, text="Enter Amount Due",borderwidth=0, bg="purple", fg="white", command=Amount_due)
-Amount_due_Button.configure(font=("Arial", 18))
+Amount_due_Button = Button(root, text="Enter Amount Due",padx = 36, pady = 8, borderwidth=0, bg=button_bg, fg=text_light, command=Amount_due)
+Amount_due_Button.configure(font=("Arial", 14))
 Amount_due_Button.pack()
 Amount_due_Button.place(x = 490, y = 76)
 
@@ -41,87 +38,40 @@ Cash_given_entry = Entry(root, width= 20, borderwidth=0)
 Cash_given_entry.config(font =("Arial", 22))
 Cash_given_entry.pack()
 Cash_given_entry.place(x = 150, y = 150)
-=======
-Amount_due_Button = Button(root, text="Enter Amount Due", bg="purple", fg="white", command=Amount_due)
-Amount_due_Button.configure(font=("Arial", 18))
-Amount_due_Button.pack()
-Amount_due_Button.place(x = 340, y = 76)
-
-# Given Cash:
-
-Cash_given_entry = Entry(root, width= 25)
-Cash_given_entry.config(font =("Arial", 22))
-Cash_given_entry.pack()
-Cash_given_entry.place(x = 25, y = 150)
->>>>>>> b18521c6f543decface60a2e1c6daf2828929d6f
 Cash_given_entry.insert(0,"")
 
 def Cash_given():
     global cash1
     cash1 = Cash_given_entry.get()
 
-<<<<<<< HEAD
-Cash_given_button = Button(root, text="Enter Cash Given",borderwidth=0 , bg="purple", fg="white", command = Cash_given)
-Cash_given_button.configure(font=("Arial", 19))
+Cash_given_button = Button(root, text="Enter Cash Given",padx = 40, pady = 8, borderwidth=0 , bg=button_bg, fg=text_light, command = Cash_given)
+Cash_given_button.configure(font=("Arial", 14))
 Cash_given_button.pack()
 Cash_given_button.place(x = 490, y = 146)
 
 # Confirming to Update the drawer:
 
-confirmation_Label = Label(root, text = "Do you want to update Cash in Drawer?", padx = 50)
+confirmation_Label = Label(root, text = "Do you want to update Cash in Drawer?", bg = bg, fg = text_dark, padx = 50)
 confirmation_Label.config(font=("Arial", 22))
 confirmation_Label.pack()
 confirmation_Label.place(x = 120, y = 220)
-=======
-Cash_given_button = Button(root, text="Enter Cash Given", bg="purple", fg="white", command = Cash_given)
-Cash_given_button.configure(font=("Arial", 18))
-Cash_given_button.pack()
-Cash_given_button.place(x = 350, y = 146)
-
-# Confirming to Update the drawer:
-
-confirmation_Label = Label(root, text = "Do you want to update Cash in Drawer?\n If Yes, press (Y/y) else press any key", padx = 50, bg = "white")
-confirmation_Label.config(font=("Arial", 22))
-confirmation_Label.pack()
-confirmation_Label.place(x = 0, y = 220)
-
-confirmation_Entry = Entry(root, width = 15)
-confirmation_Entry.config(font=('Arial', 18))
-confirmation_Entry.pack()
-confirmation_Entry.place(x = 100, y = 330)
-confirmation_Entry.insert(0,"")
-
-labels = [
-"Cash in Five Thousand Rupees:- ",
-"Cash in One Thousand Rupees:- ",
-"Cash in Five Hundred Rupees:- ",
-"Cash in One Hundred Rupees:- ",
-"Cash in Fifty Rupees:- ",
-"Cash in Twenty Rupees:- ",
-"Cash in Ten Rupees:- ",
-"Cash in Five Rupees:- ",
-"Cash in Two Rupees:- ",
-"Cash in One Rupees:- "
-]
->>>>>>> b18521c6f543decface60a2e1c6daf2828929d6f
-data = []
+# 
+input_fields_list = []
 var = IntVar()
-def Submit(cash_entered):
+data = []        
+def Confirm(cash_entered):
     i = 0
-    for items in cash_entered:
+    for item in cash_entered:
         j = data[i]
         if(j.get()==""):
-            items[1] = 0
+            item[1] = 0
         else:
-            items[1] = int(j.get())
-        i+=1
-<<<<<<< HEAD
-        
-input_fields_list = []
+            item[1] = int(j.get())
+        i += 1
 def Yes():
     n = 400
     for i in range(10):
-        a = Label(root, padx = 30, pady = 10, text=labels[i])
+        a = Label(root, padx = 30, pady = 10, text=labels[i],bg = bg, fg = text_dark)
         a.config(font=("Arial", 22))
         a.pack()
         a.place(x = 40, y = n)
@@ -137,10 +87,9 @@ def Yes():
         data.append(entry)
         input_fields_list.append(entry)
         j+=50
-
     global submit_button
-    submit_button = Button(root, padx = 20, pady = 5, text = "Confirm", fg = "Purple", bg = "White",relief = SOLID, command = lambda: [Submit(remaining_cash), var.set(1)], borderwidth = 5)
-    submit_button.config(font=("Arial", 18), highlightbackground="Purple", highlightcolor= "Purple")
+    submit_button = Button(root, padx = 16, pady = 5, text = "Confirm", fg = text_light, bg = button_bg,relief = SOLID, command = lambda: [Confirm(remaining_cash), var.set(1)], borderwidth = 5)
+    submit_button.config(font=("Arial", 16))
     submit_button.pack()
     submit_button.place(x = 360, y = 925)
     
@@ -155,20 +104,20 @@ def No():
     
 def display_result(result):
     global mylabel
-    mylabel = Label(root, pady = 10, text = "STATUS", relief="solid", width = 10)
-    mylabel.configure(font=("Arial", 22, ''))
+    mylabel = Label(root, pady = 10, text = "STATUS",bg = bg, fg = text_dark, relief="solid", width = 10)
+    mylabel.configure(font=("Arial", 22, 'bold'))
     mylabel.pack()
     mylabel.place(x = 1150, y = 80)
 
     global status
-    status = Label(root, pady = 10, text = result["status"], relief="solid", width = 20)
+    status = Label(root, pady = 10, text = result["status"],bg = bg, fg = text_dark, relief="solid", width = 20)
     status.configure(font=("Arial", 22))
     status.pack()
     status.place(x = 1320, y = 80)
     
     global mylabe3
-    mylabe3 = Label(root, pady = 10, text = "CHANGE", relief="solid", width = 30)
-    mylabe3.configure(font=("Arial", 22))
+    mylabe3 = Label(root, pady = 10, text = "CHANGE",bg = bg, fg = text_dark, relief="solid", width = 30)
+    mylabe3.configure(font=("Arial", 20, 'bold'))
     mylabe3.pack()
     mylabe3.place(x = 1150, y = 135)
     
@@ -177,30 +126,32 @@ def display_result(result):
     array = []
     n = 189
     for i in range(len(list)):
-        mylabe4 = Label(root, pady = 10, text = list[i][0], relief="solid", width = 20)
+        mylabe4 = Label(root, pady = 10, text = list[i][0],bg = bg, fg = text_dark, relief="solid", width = 20)
         mylabe4.configure(font=("Arial", 22))
         mylabe4.pack()
         mylabe4.place(x = 1150, y = n)
         array.append(mylabe4)
 
-        mylabe5 = Label(root, pady = 10, text = list[i][1], relief="solid", width = 12)
+        mylabe5 = Label(root, pady = 10, text = list[i][1],bg = bg, fg = text_dark, relief="solid", width = 12)
         mylabe5.configure(font=("Arial", 22))
         mylabe5.pack()
         mylabe5.place(x = 1456, y = n)
         array.append(mylabe5)
         n+=55
     
-yes_button = Button(root, padx = 15,  text="Yes",borderwidth=0, bg="purple", fg="white", command=Yes)
-yes_button.configure(font=("Arial", 22))
+yes_button = Button(root, padx = 17,  text="Yes", pady = 6,borderwidth=0, bg=button_bg, fg=text_light, command=Yes)
+yes_button.configure(font=("Arial", 14))
 yes_button.pack()
 yes_button.place(x = 315, y = 295)
 
-no_button = Button(root,padx = 15, text="No", borderwidth=0, bg="purple", fg="white", command=No)
-no_button.configure(font=("Arial", 22))
+no_button = Button(root,padx = 17, text="No", pady = 7, borderwidth=0, bg=button_bg, fg=text_light, command=No)
+no_button.configure(font=("Arial", 14))
 no_button.pack()
 no_button.place(x = 460, y = 295)
 
 def reset():
+    global data
+    data = []
     mylabel.destroy()
     status.destroy() 
     mylabe3.destroy()
@@ -213,77 +164,9 @@ def reset():
     for item in array:
         item.destroy()
 
-reset_button = Button(root, text = "Reset", borderwidth=0, bg = "Purple", fg = "White", command = reset)
-reset_button.configure(font=("Arial", 22))
+reset_button = Button(root, text = "Reset",padx = 20, pady = 6, borderwidth=0, bg = button_bg, fg = text_light, command = reset)
+reset_button.configure(font=("Arial", 16))
 reset_button.pack()
 reset_button.place(x = 1154, y = 600)
-=======
-
-def Confirm():
-    if confirmation_Entry.get() == 'Y' or confirmation_Entry.get() == 'y':
-        n = 400
-        for i in range(10):
-            a = Label(root, padx = 30, pady = 10, text=labels[i])
-            a.config(font=("Arial", 22))
-            a.pack()
-            a.place(x = 0, y = n)
-            n+=50
-            
-        j = 415
-        for entries in range(len(cid)):
-            entry = Entry(root)
-            entry.config(font=("Arial", 22))
-            entry.pack()
-            entry.place(x = 480, y = j)
-            data.append(entry)
-            j+=50
-
-        submit_button = Button(root, padx = 20, pady = 5, text = "Submit", fg = "White", bg = "Purple", command = lambda: [Submit(data, cid), var.set(1)])
-        submit_button.config(font=("Arial", 18))
-        submit_button.pack()
-        submit_button.place(x = 40, y = 925)
-
-        submit_button.wait_variable(var)
-
-        result = checkCashRegister(price, cash1, cid)
-  
-    else:
-        result = checkCashRegister(price, cash1)
-    
-    mylabel = Label(root, padx = 10, pady = 10, text = "STATUS", borderwidth=2, relief="solid")
-    mylabel.configure(font=("Arial", 22))
-    mylabel.pack()
-    mylabel.place(x = 1150, y = 80)
-       
-    mylabel = Label(root, pady = 10, text = result["status"], borderwidth=2, relief="solid",width=20)
-    mylabel.configure(font=("Arial", 22))
-    mylabel.pack()
-    mylabel.place(x = 1287, y = 80)
-
-    mylabel = Label(root, pady = 10, text = "CHANGE", borderwidth=2, relief="solid", width = 28)
-    mylabel.configure(font=("Arial", 22))
-    mylabel.pack()
-    mylabel.place(x = 1150, y = 135)
-    
-    list = result["change"]
-    n = 189
-    for i in range(len(list)):
-        mylabe1 = Label(root, pady = 10, text = list[i][0], borderwidth=2, relief="solid", width = 18)
-        mylabe1.configure(font=("Arial", 22))
-        mylabe1.pack()
-        mylabe1.place(x = 1150, y = n)
-
-        mylabe1 = Label(root, pady = 10, text = list[i][1], borderwidth=2, relief="solid", width = 10)
-        mylabe1.configure(font=("Arial", 22))
-        mylabe1.pack()
-        mylabe1.place(x = 1457, y = n)
-
-        n+=55 
-
-confirmation_button = Button(root, text="Confirm", bg="purple", fg="white", command=Confirm)
-confirmation_button.configure(font=("Arial", 16))
-confirmation_button.pack()
-confirmation_button.place(x = 325, y = 325)
->>>>>>> b18521c6f543decface60a2e1c6daf2828929d6f
 
 root.mainloop()
