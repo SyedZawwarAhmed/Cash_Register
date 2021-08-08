@@ -57,7 +57,7 @@ def getStatus(price, cash, cid):
     status = ""
     totalChange = float(cash) - float(price)
     if totalChange > cashInDrawer:
-        status = "INSUFFICIENT FUNDS"
+        status = "INSUFFICIENT_FUNDS"
     elif totalChange == cashInDrawer:
         status = "CLOSED"
     else:
@@ -73,7 +73,7 @@ def getStatus(price, cash, cid):
                 i += 1
       
         if totalChange != 0:
-            status = "INSUFFICIENT FUNDS"
+            status = "INSUFFICIENT_FUNDS"
 
     return status
 
@@ -110,7 +110,7 @@ def getChange(price, cash, cid, status):
             if j != 0:
                 currentCurrencyName = ac[i][0]
                 currentCurrency = ac[i][1] * j
-                if status != "INSUFFICIENT FUNDS":
+                if status != "INSUFFICIENT_FUNDS":
                     change = [currentCurrencyName, currentCurrency]
                     changeArray.append(change)
             j = 0
