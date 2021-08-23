@@ -1,6 +1,6 @@
 # Cash Register
 
-A cash Register that accepts purchased price payment and cash in drawer and displays change based on the amount due and amount given entered by the user.
+A Cash Register that accepts purchased price payment and cash in drawer, and displays the change based on the amount due and amount given entered by the user.
 
 ## Table of contents
 
@@ -39,10 +39,9 @@ A cash Register that accepts purchased price payment and cash in drawer and disp
 
 ### Links
 
-- Solution URL: [https://github.com/SyedZawwarAhmed/Rest-Countries-API](https://github.com/SyedZawwarAhmed/Rest-Countries-API)
-- Live Site URL: [https://syedzawwarahmed.github.io/Rest-Countries-API/](https://syedzawwarahmed.github.io/Rest-Countries-API/)
+- Solution URL: [https://github.com/SyedZawwarAhmed/Cash_Register](https://github.com/SyedZawwarAhmed/Cash_Register)
 
-## My process
+## Our process
 
 ### Built with
 
