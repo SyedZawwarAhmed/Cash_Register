@@ -38,13 +38,6 @@ def Amount_due():
     global price
     price = Amount_due_entry.get()
 
-# Amount_due_Button = Button(root, text="Enter Amount Due",padx = 36, pady = 8, borderwidth=0, bg=button_bg, fg=text_light, command=Amount_due)
-# Amount_due_Button.configure(font=("Arial", 14))
-# Amount_due_Button.pack()
-# Amount_due_Button.place(x = (screen_width*25.5)/100, y = (screen_height*7)/100)
-
-# Given Cash:
-
 Cash_given_entry = Entry(root, width = int((screen_width*1.04)/100), borderwidth=1, bg = entry_bg, relief = SOLID)
 Cash_given_entry.config(font =("Arial", int((screen_width*1.14)/100)))
 Cash_given_entry.pack()
@@ -61,13 +54,6 @@ cash1 = 0
 def Cash_given():
     global cash1
     cash1 = Cash_given_entry.get()
-
-# Cash_given_button = Button(root, text="Enter Cash Given",padx = 40, pady = 8, borderwidth=0 , bg=button_bg, fg=text_light, command = Cash_given)
-# Cash_given_button.configure(font=("Arial", 14))
-# Cash_given_button.pack()
-# Cash_given_button.place(x = (screen_width*25.5)/100, y = (screen_height*13.52)/100)
-
-# Confirming to Update the drawer:
 
 confirmation_Label = Label(root, text = "Do you want to update Cash in Drawer?", bg = bg, fg = text_dark, padx = int((screen_width*2.6)/100))
 confirmation_Label.config(font=("Arial", int((screen_width*1.14)/100)))
@@ -138,28 +124,9 @@ def No():
     display_result(result)
     print(result)
 
-
-    
 def display_result(result):
     global my_tree
     my_tree = ttk.Treeview(root)
-    # global mylabel
-    # mylabel = Label(root, text = "STATUS",bg = bg, fg = text_dark, relief="solid", width = int((screen_width*0.521)/100), height = 2)
-    # mylabel.configure(font=("Arial", 18, 'bold'))
-    # mylabel.pack()
-    # mylabel.place(x = (screen_width*59.9)/100, y = (screen_height*5)/100)
-
-    # global status
-    # status = Label(root, pady = 2, text = result["status"],bg = bg, fg = text_dark, relief="solid", width = int((screen_width*1.04)/100), height = 2)
-    # status.configure(font=("Arial", 18))
-    # status.pack()
-    # status.place(x = (screen_width*68.75)/100, y = (screen_height*5)/100)
-    
-    # global mylabe3
-    # mylabe3 = Label(root,padx = int((screen_width*0.989)/100), text = "CHANGE",bg = bg, fg = text_dark, relief="solid", width = int((screen_width*1.6)/100), height = 2)
-    # mylabe3.configure(font=("Arial", 18, 'bold'))
-    # mylabe3.pack()
-    # mylabe3.place(x = (screen_width*59.9)/100, y = (screen_height*11.5)/100)
     
     list = result["change"]
     my_tree = ttk.Treeview(root, height=12, columns = ("STATUS", "CHANGE", "Change"), show = 'headings') 
@@ -174,9 +141,7 @@ def display_result(result):
     count = 0
     string = result["status"]
 
-    # if(count==0):
-    #     my_tree.insert( parent = '', index = 'end', text = "", values = (""), tags = "status")
-    #     my_tree.tag_configure('status', font = ("Arial", 18))
+
     if(string == "INSUFFICIENT_FUNDS"):
         i = 0
 
@@ -194,31 +159,11 @@ def display_result(result):
             my_tree.insert( parent = '', index = 'end', text = "", values = (" ", " ", " "), tags = "status")
             my_tree.insert( parent = '', index = 'end', iid = count, text = "", values = (string, record[0], record[1]), tags = "row")
             my_tree.tag_configure('row', font = ("Arial", 18))
-        # elif(count==1):
-        #     my_tree.insert( parent = '', index = 'end', iid = count, text = "", values = (string, record[0], record[1]), tags = "row")
-        #     my_tree.tag_configure('row', font = ("Arial", 18))
         else:
             my_tree.insert( parent = '', index = 'end', iid = count, text = "", values = (" ", record[0], record[1]), tags = "row")
             my_tree.tag_configure('row', font = ("Arial", 18))
         count +=1
     my_tree.place(x = (screen_width*44.9)/100, y = (screen_height*9)/100)
-    
-    # global array
-    # array = []
-    # n = int((screen_height*17.7)/100)
-    # for i in range(len(list)):
-    #     mylabe4 = Label(root, text = list[i][0],bg = bg, fg = text_dark, relief="solid", padx = int((screen_width*1.042)/100), width = 15, height = 2)
-    #     mylabe4.configure(font=("Arial", 18))
-    #     mylabe4.pack()
-    #     mylabe4.place(x = int((screen_width*59.9)/100), y = n)
-    #     array.append(mylabe4)
-
-    #     mylabe5 = Label(root, text = list[i][1],bg = bg, fg = text_dark, relief="solid", padx = int((screen_width*0.6)/100), width = 15, height = 2)
-    #     mylabe5.configure(font=("Arial", 18))
-    #     mylabe5.pack()
-    #     mylabe5.place(x = (screen_width*73)/100, y = n)
-    #     array.append(mylabe5)
-    #     n+=(screen_height*6.4)/100
     
 yes_button = Button(root, padx = int((screen_width*0.885)/100), text="Yes", pady = int((screen_height*0.46)/100),borderwidth=0, bg=button_bg, fg=text_light, command=Yes)
 yes_button.configure(font=("Arial", int((screen_width*0.729)/100)))
@@ -233,18 +178,13 @@ no_button.place(x = (screen_width*24)/100, y = (screen_height*27.3)/100)
 def reset():
     global data
     data = []
-    # mylabel.destroy()
-    # status.destroy() 
-    # mylabe3.destroy()
     Amount_due_entry.delete(0, END)
     Cash_given_entry.delete(0, END)
     if(submit_button != ''):
         submit_button.destroy()
 
     for items in input_fields_list:
-        items.destroy()   
-    # for item in array:
-    #     item.destroy()
+        items.destroy() 
     my_tree.destroy()
 
 reset_button = Button(root, text = "Reset",padx = int((screen_width*1.04)/100), pady = int((screen_height*0.55)/100), borderwidth=0, bg = button_bg, fg = text_light, command = reset)
