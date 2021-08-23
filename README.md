@@ -29,13 +29,13 @@ A Cash Register that accepts purchased price payment and cash in drawer, and dis
 
 ### Usage Demo
 
-![](step1.png)
-![](step2.png)
-![](step3.png)
-![](step4.png)
-![](step5.png)
-![](step6.png)
-![](step7.png)
+![](screenshots/step1.png)
+![](screenshots/step2.png)
+![](screenshots/step3.png)
+![](screenshots/step4.png)
+![](screenshots/step5.png)
+![](screenshots/step6.png)
+![](screenshots/step7.png)
 
 ### Links
 
