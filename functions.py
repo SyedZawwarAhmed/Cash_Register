@@ -1,4 +1,4 @@
-cid = [
+currency_names_list = [
 ["FIVE THOUSAND"],
 ["ONE THOUSAND"],
 ["FIVE HUNDRED"],
@@ -37,49 +37,49 @@ remaining_cash = [
 ["ONE", 1000]
 ]
 
-def checkCashRegister(price, cash, cid=remaining_cash):
-    status = getStatus(price, cash, cid)
-    change = getChange(price, cash, cid, status)
+def check_cash_register(price, cash, currency_names_list=remaining_cash):
+    status = get_status(price, cash, currency_names_list)
+    change = get_change(price, cash, currency_names_list, status)
     return {
         "status": status,
         "change": change
     }
 
 
-def getStatus(price, cash, cid):
-    cashInDrawerArray = cid
+def get_status(price, cash, currency_names_list):
+    cash_in_drawer_list = currency_names_list
     cinda = []
-    cashInDrawer = 0
-    for item in cashInDrawerArray:
+    cash_in_drawer = 0
+    for item in cash_in_drawer_list:
         cinda.append(item[1])
-        cashInDrawer += item[1]
+        cash_in_drawer += item[1]
     ac = [5000, 1000, 500, 100, 50, 20, 10, 5, 2, 1]
     status = ""
-    totalChange = float(cash) - float(price)
-    if totalChange > cashInDrawer:
+    total_change = float(cash) - float(price)
+    if total_change > cash_in_drawer:
         status = "INSUFFICIENT_FUNDS"
-    elif totalChange == cashInDrawer:
+    elif total_change == cash_in_drawer:
         status = "CLOSED"
     else:
         status = "OPEN"
         i = 0
         while i < len(cinda):
-            if totalChange >= ac[i] and cinda[i] >= ac[i]:
-                totalChange -= ac[i]
+            if total_change >= ac[i] and cinda[i] >= ac[i]:
+                total_change -= ac[i]
                 cinda[i] -= ac[i]
-                totalChange = float(format(totalChange, ".2f"))
+                total_change = float(format(total_change, ".2f"))
                 cinda[i] = float(format(cinda[i], ".2f"))
             else: 
                 i += 1
       
-        if totalChange != 0:
+        if total_change != 0:
             status = "INSUFFICIENT_FUNDS"
 
     return status
 
 
-def getChange(price, cash, cid, status):
-    totalChange = float(cash) - float(price)
+def get_change(price, cash, currency_names_list, status):
+    total_change = float(cash) - float(price)
     changeArray = []
     currentCurrencyName = ""
     currentCurrency = 0
@@ -96,15 +96,15 @@ def getChange(price, cash, cid, status):
     ["TWO", 2],
     ["ONE", 1]
     ]
-    cashInDrawerArray = cid
+    cash_in_drawer_list = currency_names_list
     i = 0
     j = 0
     while i < len(ac):
-        if totalChange >= ac[i][1] and cashInDrawerArray[i][1] >= ac[i][1]:
-            totalChange -= ac[i][1]
-            cashInDrawerArray[i][1] -= ac[i][1]
-            totalChange = float(format(totalChange, ".2f"))
-            cashInDrawerArray[i][1] = float(format(cashInDrawerArray[i][1], ".2f"))
+        if total_change >= ac[i][1] and cash_in_drawer_list[i][1] >= ac[i][1]:
+            total_change -= ac[i][1]
+            cash_in_drawer_list[i][1] -= ac[i][1]
+            total_change = float(format(total_change, ".2f"))
+            cash_in_drawer_list[i][1] = float(format(cash_in_drawer_list[i][1], ".2f"))
             j += 1
         else:
             if j != 0:

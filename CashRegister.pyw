@@ -2,9 +2,8 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import font
 from tkinter.font import BOLD
-from functions import checkCashRegister
+from functions import check_cash_register
 from functions import remaining_cash
-from functions import cid
 from functions import labels
 
 button_bg = "#023e8a"
@@ -104,7 +103,7 @@ def Confirm(cash_entered):
                 data[cash_entered.index(item)].config(highlightthickness=0, highlightbackground="red")
         n+=int((screen_height*5.5)/100)
         i += 1
-    result = checkCashRegister(price, cash1, remaining_cash)
+    result = check_cash_register(price, cash1, remaining_cash)
 
     if(error_found == False):
         for item in error_label_list:
@@ -159,7 +158,7 @@ def No():
     global cash1
     cash1 = Cash_given_entry.get()
 
-    result = checkCashRegister(price, cash1)
+    result = check_cash_register(price, cash1)
     display_result(result)
 
 
