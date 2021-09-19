@@ -54,13 +54,13 @@ While making this project, the most important thing which We learned is Tkinter 
 
 Here is the snippet of the treeview we used in this project
 ```py
-my_tree = ttk.Treeview(root)   
+result_tree = ttk.Treeview(root)   
 list = result["change"]
-my_tree = ttk.Treeview(root, height=12, columns = ("STATUS", "CHANGE", "Change"), show = 'headings') 
-my_tree.heading("STATUS", text = "STATUS")
-my_tree.heading("CHANGE", text = "CHANGE")
-my_tree.column("CHANGE", width = 270)
-my_tree.column("STATUS",width = 300, anchor=CENTER)
+result_tree = ttk.Treeview(root, height=12, columns = ("STATUS", "CHANGE", "Change"), show = 'headings') 
+result_tree.heading("STATUS", text = "STATUS")
+result_tree.heading("CHANGE", text = "CHANGE")
+result_tree.column("CHANGE", width = 270)
+result_tree.column("STATUS",width = 300, anchor=CENTER)
 style = ttk.Style()
 style.configure("Treeview", rowheight = 40, background = "Silver", fieldbackground = "Silver")
 style.configure("Treeview.Heading", font=('Arial', 22))	
