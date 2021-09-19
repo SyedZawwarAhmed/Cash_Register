@@ -151,7 +151,8 @@ def Yes():
 
 
 def No():
-
+    global error_found
+    error_found = False
     global price
     price = Amount_due_entry.get()
 
