@@ -71,7 +71,6 @@ data = []
 error_label_list = ['', '', '', '', '', '', '', '', '', '']
 submit_button = ''
 
-
 def Confirm(cash_entered):
     global error_found
     error_found = False
@@ -90,7 +89,7 @@ def Confirm(cash_entered):
             if(item[1] % error_checker[cash_entered.index(item)] != 0):
                 if error_label_list[cash_entered.index(item)] != "":
                     error_label_list[cash_entered.index(item)].destroy()
-                error_label_list[cash_entered.index(item)] = Label(root, text = "Not a multiple of " + str(error_checker[cash_entered.index(item)]),bg = bg, fg = "red")
+                error_label_list[cash_entered.index(item)] = Label(root, text = "Should be a multiple of " + str(error_checker[cash_entered.index(item)]),bg = bg, fg = "red")
                 error_label_list[cash_entered.index(item)].config(font=("Arial", int((screen_width*0.5)/100)))
                 error_label_list[cash_entered.index(item)].pack()
                 error_label_list[cash_entered.index(item)].place(x = (screen_width*25)/100, y = n)
@@ -110,7 +109,10 @@ def Confirm(cash_entered):
             if (item != ""):
                 item.destroy()
         display_result(result)
-
+    elif(error_found == True):
+        result_tree.destroy()
+    # else:
+    
 
 def Yes():
     n = (screen_height*36)/100
@@ -140,12 +142,10 @@ def Yes():
         input_fields_list.append(entry)
         j += int((screen_height*5.5)/100)
     global submit_button
-    submit_button = Button(root, padx=int((screen_width*0.83)/100), pady=int((screen_height*0.46)/100), text="Confirm",
-                           fg=text_light, bg=button_bg, relief=SOLID, command=lambda: [Confirm(remaining_cash), var.set(1)], borderwidth=0)
+    submit_button = Button(root, padx=int((screen_width*0.83)/100), pady=int((screen_height*0.46)/100), text="Confirm", fg=text_light, bg=button_bg, relief=SOLID, command=lambda: [Confirm(remaining_cash), var.set(1)], borderwidth=0)
     submit_button.config(font=("Arial", int((screen_width*0.83)/100)))
     submit_button.pack()
-    submit_button.place(x=int((screen_width*18.75)/100),
-                        y=int((screen_height*90)/100))
+    submit_button.place(x=int((screen_width*18.75)/100), y=int((screen_height*90)/100))
 
     submit_button.wait_variable(var)
 
@@ -232,7 +232,13 @@ def reset():
 
     for items in input_fields_list:
         items.destroy()
-    result_tree.destroy()
+    if(error_found == False):
+        result_tree.destroy()
+    for item in error_label_list:
+        if item != "":
+            item.destroy()
+            item = ""
+        
 
 
 reset_button = Button(root, text="Reset", padx=int((screen_width*1.04)/100), pady=int(

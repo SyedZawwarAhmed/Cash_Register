@@ -16,15 +16,16 @@ A Cash Register that accepts purchased price payment and cash in drawer, and dis
 
 ## Overview
 
-### Objective
+### Usage
 
-- Users can enter the **amount due**, **amount given** and **cash in drawer** using input fields
-- Users can see the **status key** and **change**
+- User can enter the **amount due**, **amount given** and **cash in drawer** using input fields
+- User can see the **status key** and **change**
 - If cash in drawer is less than the change due or the exact change can not be given then the status key will be **INSUFFICIENT FUNDS** and change key will be empty
 - If cash in drawer is equal to the change then the change will be displayed and the status key will be **CLOSED**
 - If cash in drawer is greater than change then the change will be displayed and the status key will be **OPEN** 
-- Users can reset the inputs and results by clicking on the **reset button** but the cash in drawer will not be changed
-- Users have the option to change the cash in drawer or go with the previous one everytime they calculate a new change
+- User can reset the inputs and results by clicking on the **reset button** but the cash in drawer will not be changed
+- User has the option to change the cash in drawer or go with the previous one everytime they calculate a new change
+- If User enters an amount which is not the correct multiple of the respective entry (e.g. user enters 16000 instead of 15000 in the Cash in Five thousand rupees field), an error will be thrown to the user and the result will not be displayed.
 
 
 ### Usage Demo
