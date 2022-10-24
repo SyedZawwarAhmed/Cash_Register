@@ -74,5 +74,5 @@ style.configure("Treeview.Heading", font=('Arial', 22))
 
 ## Authors
 
-- **Syed Zawwar Ahmed**
-- **Muhammad Annas Baig**
+- **[Syed Zawwar Ahmed](https://github.com/SyedZawwarAhmed)**
+- **[Muhammad Annas Baig](https://github.com/Annas03)**
